@@ -3,7 +3,7 @@ Python based Implementation from scratch of path planning algorithms: Djikstras,
 
 # Videos Implementation
 
-### Djikstras
+### Dijkstras
 https://user-images.githubusercontent.com/66770479/219283700-029bbc35-ad88-4294-baac-6daa45556f6b.mp4
 
 ### A* (A_star)
