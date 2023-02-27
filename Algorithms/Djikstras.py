@@ -1,5 +1,5 @@
-"""@package Djikstras
-@brief Contains implementation class of Djikstras Algorithm along with methods to display it on a map
+"""@package Dijkstras
+@brief Contains implementation class of Dijkstras Algorithm along with methods to display it on a map
 
 """
 
@@ -11,21 +11,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import sleep
 
-class DjikstrasAlgorithm(PathPlanningAlgorithm):
+class DijkstrasAlgorithm(PathPlanningAlgorithm):
     def __init__(self, map: Map = None, map_path:str = None) -> None:
         """
-        @breif Initialises Djikstras object
+        @breif Initialises Dijkstras object
         @param map Map(Coarse) object
         @map_path Path to load a map(Coarse) from
         """
         super().__init__(map, map_path)
         if self.map.map_type == "Fine":
-            print("[ERROR] Djikstras algorithm can be applied to a Coarse Map only(with lesser number of nodes)")
+            print("[ERROR] Dijkstras algorithm can be applied to a Coarse Map only(with lesser number of nodes)")
             exit()
 
     def run(self, source_point: Tuple[int, int], target_point: Tuple[int, int], visual: bool = False) -> Tuple[int, List[int]]:
         """
-        @brief Runs the Djikstras Algorithm
+        @brief Runs the Dijkstras Algorithm
         @param source_point The starting node to find shortest path
         @param target_point The target node to find shortest path
         @return shortest_distance, shortest_path
@@ -48,7 +48,7 @@ class DjikstrasAlgorithm(PathPlanningAlgorithm):
         if visual:
             plt.ion()
             live_fig, live_ax = plt.subplots(figsize=(12, 10))
-            self.map.show("Djikstras Algorithm", live_fig, live_ax, False)
+            self.map.show("Dijkstras Algorithm", live_fig, live_ax, False)
             live_ax.scatter(source_point[0], source_point[1], c="green")
             live_ax.scatter(target_point[0], target_point[1], c="yellow")
             for point in node_array:
@@ -168,6 +168,6 @@ class DjikstrasAlgorithm(PathPlanningAlgorithm):
         plt.show()
 
 if __name__ == "__main__":
-    PPA = DjikstrasAlgorithm(map_path='Maps/demo_maps/30x10_B.png')
+    PPA = DijkstrasAlgorithm(map_path='Maps/demo_maps/30x10_B.png')
     PPA.visualise_graph()
     PPA.operate(True)
