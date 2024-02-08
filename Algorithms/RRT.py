@@ -82,6 +82,7 @@ class RRTAlgorithm(PathPlanningAlgorithm):
             new_point_marker = live_ax.scatter([], [], c = '#20639b', label = "New Point", s = 15)
             tree_nodes = live_ax.scatter([], [], c = '#ed553b', label = "Tree Nodes", s = 7)
             live_fig.canvas.draw()
+            plt.pause(0.000001)
 
 
         new_node = None
@@ -95,6 +96,7 @@ class RRTAlgorithm(PathPlanningAlgorithm):
             if visual:
                 rand_point_marker.set_offsets(rand_point)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
 
             distance_array = []
             for node in range(len(point_array)):
@@ -112,6 +114,7 @@ class RRTAlgorithm(PathPlanningAlgorithm):
                 rand_point_line.set_data(tuple(np.column_stack([point_array[nearest_node], rand_point])))
                 new_point_marker.set_offsets(new_point)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
 
             # Append to point_array and to graph
             point_array.append(new_point)
@@ -129,6 +132,7 @@ class RRTAlgorithm(PathPlanningAlgorithm):
                 tree_nodes.set_offsets(current_offsets)
                 live_ax.plot([point_array[nearest_node][0], point_array[new_node][0]], [point_array[nearest_node][1], point_array[new_node][1]], c = "#ed553b", lw = "1")
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
 
             if distance(point_array[new_node], target_point) <= self.target_radius:
                 nearest_distance = distance(point_array[new_node], target_point)
@@ -158,6 +162,7 @@ class RRTAlgorithm(PathPlanningAlgorithm):
             for point1, point2 in zip(discovered_path[:-1], discovered_path[1:]):
                 live_ax.plot([point1[0], point2[0]], [point1[1], point2[1]], c = "#3caea3", lw = "3", zorder = 102)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
             sleep(5)
             plt.ioff()
 

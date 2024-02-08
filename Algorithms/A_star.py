@@ -86,6 +86,7 @@ class A_starAlgorithm(PathPlanningAlgorithm):
             if visual:
                 just_poped_marker.set_offsets(node_array[just_poped])
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
                 sleep(0.)
 
             if just_poped == target_node:
@@ -137,6 +138,7 @@ class A_starAlgorithm(PathPlanningAlgorithm):
                 live_fig.suptitle(f'Final Path [Distance: {shortest_distance}]')
                 live_ax.legend()
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
                 sleep(0.1)
             sleep(2)
             plt.close(live_fig)

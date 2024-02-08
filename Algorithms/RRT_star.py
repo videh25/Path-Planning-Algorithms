@@ -117,6 +117,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
             vicinity_circle = plt.Circle(source_point, 0., color='green', ls = '--', fill = False)
             live_ax.add_patch(vicinity_circle)
             live_fig.canvas.draw()
+            plt.pause(0.000001)
 
 
         new_node = None
@@ -133,6 +134,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
             if visual:
                 rand_point_marker.set_offsets(rand_point)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
 
             distance_array = []
             for node in range(len(point_array)):
@@ -150,6 +152,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
                 rand_point_line.set_data(tuple(np.column_stack([point_array[nearest_node], rand_point])))
                 new_point_marker.set_offsets(new_point)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
             
             # Add the point and its adjency list
             point_array.append(new_point) # Append new_point to the point_array
@@ -168,6 +171,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
                 vicinity_circle.set_center(new_point)
                 vicinity_circle.set_radius(rewiring_radius)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
             for node, point in enumerate(point_array):
                 vicinity_distance = distance(point, point_array[new_node])
                 if node == new_node:
@@ -191,6 +195,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
                     tree_edge_lines.append(plt.Line2D([point_array[connecting_node][0], point_array[new_node][0]], [point_array[connecting_node][1], point_array[new_node][1]], c = "#ed553b", lw = "1"))
                     live_ax.add_line(tree_edge_lines[new_node])
                     live_fig.canvas.draw()
+                    plt.pause(0.000001)
             else:
                 print("Vicinity list is empty")
 
@@ -203,12 +208,14 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
                     if visual:
                         tree_edge_lines[node].set_data([point_array[new_node][0], point_array[node][0]], [point_array[new_node][1], point_array[node][1]])
                         live_fig.canvas.draw()
+                        plt.pause(0.000001)
             
             if visual:
                 current_offsets = list(tree_nodes.get_offsets())
                 current_offsets.append(new_point)
                 tree_nodes.set_offsets(current_offsets)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
 
             if distance(point_array[new_node], target_point) <= self.target_radius:
                 nearest_distance = distance(point_array[new_node], target_point)
@@ -237,6 +244,7 @@ class RRT_starAlgorithm(PathPlanningAlgorithm):
             for point1, point2 in zip(discovered_path[:-1], discovered_path[1:]):
                 live_ax.plot([point1[0], point2[0]], [point1[1], point2[1]], c = "#3caea3", lw = "3", zorder = 102)
                 live_fig.canvas.draw()
+                plt.pause(0.000001)
             
             sleep(5)
             plt.ioff()
